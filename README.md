@@ -1,3 +1,7 @@
+# shoe-store-app
+
+Shoe store app developed for a practice and as a test in a job interview process
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
