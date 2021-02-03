@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  appBarStyle: {
+    borderBottom: "5px solid #394959",
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -144,7 +147,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.appBarStyle}>
         <Toolbar>
           <div className={classes.sectionMobile}>
             <IconButton

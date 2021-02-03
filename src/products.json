@@ -2,58 +2,58 @@
   "products": [
     {
       "productId": 1,
-      "productName": "tike1",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 2,
-      "productName": "tike2",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 3,
-      "productName": "tike3",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 4,
-      "productName": "tike4",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 5,
-      "productName": "tike5",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 6,
-      "productName": "tike6",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 7,
-      "productName": "tike7",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     },
     {
       "productId": 8,
-      "productName": "tike8",
+      "productName": "Air Force Max II",
       "productBrand": "Nike",
-      "productPrice": "15.000,00",
+      "productPrice": "17.000,00",
       "productImg": ""
     }
   ]
