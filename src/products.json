@@ -1,0 +1,60 @@
+{
+  "products": [
+    {
+      "productId": 1,
+      "productName": "tike1",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 2,
+      "productName": "tike2",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 3,
+      "productName": "tike3",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 4,
+      "productName": "tike4",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 5,
+      "productName": "tike5",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 6,
+      "productName": "tike6",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 7,
+      "productName": "tike7",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    },
+    {
+      "productId": 8,
+      "productName": "tike8",
+      "productBrand": "Nike",
+      "productPrice": "15.000,00",
+      "productImg": ""
+    }
+  ]
+}
