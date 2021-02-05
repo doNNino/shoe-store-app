@@ -19,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 // start of the component
 export default function Home() {
-  useEffect(() => {
-    console.log(productsObj.products);
-  });
   const classes = useStyles();
   const { products } = productsObj;
   return (

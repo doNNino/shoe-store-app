@@ -1,4 +1,6 @@
 import React from "react";
+// redux import
+import { connect } from "react-redux";
 // MaterialUI imports
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -11,6 +13,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import picture2 from "../../AV6243-400_350_350px.webp";
+
+// import actions
+import { addProductToCart } from "../../redux/actions/appActions.js";
 
 // Custom styles for the component
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 // start of the component
-export default function ProductCard(props) {
+function ProductCard(props) {
   const classes = useStyles();
   const {
     productBrand,
@@ -48,6 +53,12 @@ export default function ProductCard(props) {
     productName,
     productPrice,
   } = props.itemDetails;
+  // redux state props and functions
+  const { selectedProducts, addProductToCart } = props;
+
+  const addToCart = async () => {
+    await addProductToCart(props.itemDetails);
+  };
 
   return (
     <Grid item lg={4} md={6} sm={12} xs={12} className={classes.gridStyle}>
@@ -80,6 +91,7 @@ export default function ProductCard(props) {
             size="small"
             color="primary"
             className={classes.cardActionButtonStyle}
+            onClick={addToCart}
           >
             Add to cart
           </Button>
@@ -88,3 +100,13 @@ export default function ProductCard(props) {
     </Grid>
   );
 }
+// redux state props function
+const mapStateToProps = (state /* , ownProps*/) => {
+  return {
+    selectedProducts: state.appReducer.selectedProducts,
+  };
+};
+// redux action functions object
+const mapDispatchToProps = { addProductToCart };
+// default export of the app connected with redux
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);
