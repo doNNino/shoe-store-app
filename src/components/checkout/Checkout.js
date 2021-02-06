@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // custom components import
 import NavBar from "../reusable/NavBar";
 import CheckoutProductCard from "./CheckoutProductCard";
+import CheckoutAndPay from "./CheckoutAndPay";
 
 // custom styles for the component
 const useStyles = makeStyles((theme) => ({
@@ -37,7 +38,9 @@ function Checkout(props) {
             {selectedProducts.map((item) => (
               <CheckoutProductCard itemDetails={item} key={item.productId} />
             ))}
-            <button className="btn btn-primary mt-4">PAY UP DUDE</button>
+            <Grid item className="w-100">
+              <CheckoutAndPay />
+            </Grid>
           </Grid>
         </Container>
       </div>

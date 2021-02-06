@@ -61,7 +61,7 @@ export default function CheckoutProductCard(props) {
       </Grid>
       <Grid item className={classes.priceDivStyle} xl={2} sm={12}>
         <Typography variant="h6" color="textSecondary" component="h6">
-          Count : 1
+          Quantity : 1
         </Typography>
       </Grid>
     </Grid>
