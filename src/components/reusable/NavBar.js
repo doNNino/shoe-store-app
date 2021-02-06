@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // react router NavLink import
 import { NavLink } from "react-router-dom";
+// redux import
+import { connect } from "react-redux";
 // custom style functions from materialUI import
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 // materialUI components imports
@@ -92,7 +94,7 @@ const StyledMenu = withStyles({
   />
 ));
 // start of the component
-export default function NavBar() {
+function NavBar(props) {
   const classes = useStyles();
   // state value and set function for showing mobile navbar('hamburger)
   const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
@@ -108,6 +110,10 @@ export default function NavBar() {
   };
   // mobile menu Id value for connecting button('hamburger') with the menu
   const mobileMenuId = "mobile-menu";
+  // destructured redux state props
+  const { selectedProducts } = props;
+  // app used variables
+  const selectedProductsCount = selectedProducts.length;
   // styled mobile menu
   const renderMobileMenu = (
     <StyledMenu
@@ -127,7 +133,7 @@ export default function NavBar() {
       <MenuItem>
         <NavLink to="/checkout" className={classes.mobileNavLink}>
           <IconButton aria-label="checkout" color="inherit">
-            <Badge badgeContent={17} color="secondary">
+            <Badge badgeContent={selectedProductsCount} color="secondary">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
@@ -173,7 +179,7 @@ export default function NavBar() {
             </NavLink>
             <NavLink to="/checkout" className={classes.navLink}>
               <IconButton aria-label="checkout" color="inherit">
-                <Badge badgeContent={25} color="secondary">
+                <Badge badgeContent={selectedProductsCount} color="secondary">
                   <ShoppingCartIcon />
                 </Badge>
               </IconButton>
@@ -192,3 +198,15 @@ export default function NavBar() {
     </div>
   );
 }
+// redux state prop function
+const mapStateToProps = (state /* , ownProps*/) => {
+  return {
+    selectedProducts: state.appReducer.selectedProducts,
+  };
+};
+// redux actions function object
+const mapDispatchToProps = {};
+
+// default export of the component with redux connect
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

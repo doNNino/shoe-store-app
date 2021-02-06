@@ -1,5 +1,5 @@
 // import types
-import { SELECTED_PRODUCTS } from "../Types";
+import { SELECTED_PRODUCTS, TOTAL_PRICE_OF_PRODUCTS } from "../Types";
 
 // redux actions file
 
@@ -8,13 +8,34 @@ export const addProductToCartSet = (data) => ({
   type: SELECTED_PRODUCTS,
   payload: data,
 });
+// funciton that sets the total price value of selected products(products added to the cart)
+export const totalPriceOfProductsSet = (data) => ({
+  type: TOTAL_PRICE_OF_PRODUCTS,
+  payload: data,
+});
 
 // funciton that adds new product into the cart (into the existing products array saved in reducer state)
 export const addProductToCart = (product) => async (dispatch, getState) => {
   // array of already selected products
   let selectedProducts = [...getState().appReducer.selectedProducts];
-  // pushing new product in the array of selected products
-  selectedProducts.push(product);
-  // dispatching function to set new array of selected products
-  await dispatch(addProductToCartSet(selectedProducts));
+  // array of Ids of selected products
+  let selectedProductsIds = selectedProducts.map((item) => item.productId);
+  // adding product to the selected products if its not already added(by checking if Id is not in the array of selected products Ids)
+  if (!selectedProductsIds.includes(product.productId)) {
+    // pushing new product in the array of selected products
+    await selectedProducts.push(product);
+    // dispatching function to set new array of selected products
+    await dispatch(addProductToCartSet(selectedProducts));
+    await dispatch(totalPriceOfProducts());
+  }
+};
+// function that calculates the total price of the selected products
+export const totalPriceOfProducts = () => async (dispatch, getState) => {
+  const selectedProducts = getState().appReducer.selectedProducts;
+  let newTotalPrice = 0;
+  for (const product of selectedProducts) {
+    newTotalPrice += product.productPrice;
+  }
+  // dispatch the newly calculated total price of selected products to the redux store
+  await dispatch(totalPriceOfProductsSet(newTotalPrice));
 };
