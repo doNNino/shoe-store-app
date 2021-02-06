@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 // MaterialUI components
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+// Custom components
+import CheckoutDialog from "./CheckoutDialog";
 
 // custom styles for the component
 const useStyles = makeStyles((theme) => ({
@@ -27,13 +29,8 @@ function CheckoutAndPay(props) {
           Total Price : {totalPriceOfProducts} $
         </Typography>
       </div>
-      <div>
-        <button
-          onClick={() => console.log("PAY UP")}
-          className="btn btn-primary mt-3"
-        >
-          Checkout & Pay
-        </button>
+      <div className="mt-3">
+        <CheckoutDialog />
       </div>
     </div>
   );
