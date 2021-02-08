@@ -91,6 +91,7 @@ export default function CheckoutProductCard(props) {
             aria-label="increase-quantity"
             size="medium"
             className={classes.iconButtonStyle}
+            disabled
           >
             <ArrowUpwardIcon fontSize="inherit" />
           </IconButton>
@@ -98,6 +99,7 @@ export default function CheckoutProductCard(props) {
             aria-label="decrease-quantity"
             size="medium"
             className={classes.iconButtonStyle}
+            disabled
           >
             <ArrowDownwardIcon fontSize="inherit" />
           </IconButton>

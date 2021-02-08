@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // redux import
 import { connect } from "react-redux";
 // MaterialUI components
@@ -55,8 +55,7 @@ function CheckoutDialog(props) {
   };
 
   const handlePay = async () => {
-    await completeOrder(userInfo);
-    handleClose();
+    await completeOrder(userInfo, props.history);
   };
 
   const handleInputChange = (event) => {

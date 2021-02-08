@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // MaterialUI components
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { makeStyles } from "@material-ui/core/styles";
 // custom components import
 import NavBar from "../reusable/NavBar";
@@ -18,32 +19,60 @@ const useStyles = makeStyles((theme) => ({
   gridStyle: {
     padding: "25px",
   },
+  noProductsDivStyle: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center",
+    minHeight: "80vh",
+  },
+  iconSize: {
+    fontSize: "100px",
+    width: "100%",
+  },
+  textSize: {
+    fontSize: "30px",
+  },
 }));
 // start of the component
 function Checkout(props) {
   const classes = useStyles();
+  // redux state props
   const { selectedProducts } = props;
+  // boolian that shows wich page we should render
+  const showPageWithProducts = selectedProducts.length > 0;
   return (
-    <div className="w-100 h-100">
+    <div className="w-100">
       <NavBar />
-      <div className={classes.root}>
-        <Container>
-          <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            className={classes.gridStyle}
-          >
-            {selectedProducts.map((item) => (
-              <CheckoutProductCard itemDetails={item} key={item._id} />
-            ))}
-            <Grid item className="w-100">
-              <CheckoutAndPay />
+      {showPageWithProducts ? (
+        <div className={classes.root}>
+          <Container>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              className={classes.gridStyle}
+            >
+              {selectedProducts.map((item) => (
+                <CheckoutProductCard itemDetails={item} key={item._id} />
+              ))}
+              <Grid item className="w-100">
+                <CheckoutAndPay history={props.history} />
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      ) : (
+        // render page without products
+        <div className={classes.noProductsDivStyle}>
+          <p className={classes.textSize}>
+            Shoping Cart is empty, please select some of the products
+          </p>
+          <RemoveShoppingCartIcon className={classes.iconSize} />
+        </div>
+      )}
     </div>
   );
 }

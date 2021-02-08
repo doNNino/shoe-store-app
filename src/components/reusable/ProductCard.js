@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     paddingTop: "30px !important",
   },
+  cardContentStyle: {
+    maxWidth: "320px",
+    minHeight: "180px",
+  },
   cardActionButtonContainerStyle: {
     display: "flex",
     justifyContent: "center",
@@ -59,7 +63,7 @@ function ProductCard(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia className={classes.media} image={picture2} title={Name} />
-          <CardContent>
+          <CardContent className={classes.cardContentStyle}>
             <Typography gutterBottom variant="h5" component="h2">
               {Name}
             </Typography>

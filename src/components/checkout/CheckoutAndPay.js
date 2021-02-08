@@ -30,7 +30,7 @@ function CheckoutAndPay(props) {
         </Typography>
       </div>
       <div className="mt-3">
-        <CheckoutDialog />
+        <CheckoutDialog history={props.history} />
       </div>
     </div>
   );
