@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import picture2 from "../../AV6243-400_350_350px.webp";
+import picture2 from "../../assets/AV6243-400_350_350px.webp";
 
 // import actions
 import { addProductToCart } from "../../redux/actions/appActions.js";

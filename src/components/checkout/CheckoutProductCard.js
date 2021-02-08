@@ -8,7 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
-import picture2 from "../../AV6243-400_350_350px.webp";
+import picture2 from "../../assets/AV6243-400_350_350px.webp";
 
 // custom styles for the component
 const useStyles = makeStyles((theme) => ({
