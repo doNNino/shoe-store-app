@@ -69,7 +69,7 @@ export const totalPriceOfProducts = () => async (dispatch, getState) => {
     const selectedProducts = getState().appReducer.selectedProducts;
     let newTotalPrice = 0;
     for (const product of selectedProducts) {
-      newTotalPrice += product.productPrice;
+      newTotalPrice += product.Price;
     }
     // dispatch the newly calculated total price of selected products to the redux store
     await dispatch(totalPriceOfProductsSet(newTotalPrice));
