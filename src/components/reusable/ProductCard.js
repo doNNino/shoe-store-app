@@ -46,13 +46,7 @@ const useStyles = makeStyles((theme) => ({
 // start of the component
 function ProductCard(props) {
   const classes = useStyles();
-  const {
-    productBrand,
-    productId,
-    productImg,
-    productName,
-    productPrice,
-  } = props.itemDetails;
+  const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   // redux state props and functions
   const { selectedProducts, addProductToCart } = props;
 
@@ -64,24 +58,20 @@ function ProductCard(props) {
     <Grid item lg={4} md={6} sm={12} xs={12} className={classes.gridStyle}>
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={picture2}
-            title={productName}
-          />
+          <CardMedia className={classes.media} image={picture2} title={Name} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {productName}
+              {Name}
             </Typography>
             <div>
               <Typography variant="body2" color="textSecondary" component="p">
-                Brand : {productBrand}
+                Brand : {Brand}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                Name : {productName}
+                Name : {Name}
               </Typography>
               <Typography variant="h6" color="textSecondary" component="h6">
-                Price : {productPrice} $
+                Price : {Price} $
               </Typography>
             </div>
           </CardContent>

@@ -34,7 +34,7 @@ export const fetchAllProducts = () => async (dispatch, getState) => {
     const response = await axios.get(
       `${process.env.REACT_APP_LOCAL_SERVER_URL}/api/v1/products`
     );
-    const { products } = response.data.data;
+    const products = response.data.data;
     // dispatch fetched products to the redux store
     await dispatch(fetchAllProductsSet(products));
   } catch (error) {

@@ -62,25 +62,19 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckoutProductCard(props) {
   const classes = useStyles();
-  const {
-    productBrand,
-    productId,
-    productImg,
-    productName,
-    productPrice,
-  } = props.itemDetails;
+  const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   return (
     <Grid className={`w-100 ${classes.containerStyle}`}>
       <Grid item className={classes.imageDivStyle} xl={5} sm={12}></Grid>
       <Grid item className={classes.priceDivStyle} xl={4} sm={12}>
         <Typography variant="body2" color="textSecondary" component="p">
-          Brand : {productBrand}
+          Brand : {Brand}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Name : {productName}
+          Name : {Name}
         </Typography>
         <Typography variant="h6" color="textSecondary" component="h6">
-          Price : {productPrice} $
+          Price : {Price} $
         </Typography>
       </Grid>
       <Grid item className={classes.quantityDivStyle} xl={3} sm={12}>

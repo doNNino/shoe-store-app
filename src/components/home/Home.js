@@ -32,7 +32,7 @@ function Home(props) {
         <Container>
           <Grid container className={classes.gridStyle}>
             {allProducts.map((item) => (
-              <ProductCard itemDetails={item} key={item.productId} />
+              <ProductCard itemDetails={item} key={item._id} />
             ))}
           </Grid>
         </Container>
