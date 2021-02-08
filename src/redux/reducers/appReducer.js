@@ -3,12 +3,16 @@ import {
   FETCH_PRODUCTS,
   SELECTED_PRODUCTS,
   TOTAL_PRICE_OF_PRODUCTS,
+  ORDER_HISTORY,
+  CLEAR_ORDER_HISTORY,
+  CLEAR_GLOBAL_STATE,
 } from "../Types";
 // Define an initial state value for the app
 const initialState = {
   allProducts: [],
   selectedProducts: [],
   totalPriceOfProducts: 0,
+  orderHistory: [],
 };
 // appReducer function
 export function appReducer(state = initialState, action) {
@@ -23,6 +27,15 @@ export function appReducer(state = initialState, action) {
     // total price of selected products
     case TOTAL_PRICE_OF_PRODUCTS:
       return { ...state, totalPriceOfProducts: action.payload };
+    // order History of completed orders
+    case ORDER_HISTORY:
+      return { ...state, orderHistory: action.payload };
+    // clear order History
+    case CLEAR_ORDER_HISTORY:
+      return { ...state, orderHistory: [] };
+    // clear global state except order History and all products
+    case CLEAR_GLOBAL_STATE:
+      return { ...state, selectedProducts: [], totalPriceOfProducts: 0 };
     default:
       // If the reducer doesn't care about this action type,
       // return the existing state unchanged

@@ -3,6 +3,9 @@ import {
   FETCH_PRODUCTS,
   SELECTED_PRODUCTS,
   TOTAL_PRICE_OF_PRODUCTS,
+  ORDER_HISTORY,
+  CLEAR_ORDER_HISTORY,
+  CLEAR_GLOBAL_STATE,
 } from "../Types";
 
 // other imports
@@ -25,6 +28,19 @@ export const addProductToCartSet = (data) => ({
 export const totalPriceOfProductsSet = (data) => ({
   type: TOTAL_PRICE_OF_PRODUCTS,
   payload: data,
+});
+// funciton that sets the order History after completed purchase
+export const orderHistorySet = (data) => ({
+  type: ORDER_HISTORY,
+  payload: data,
+});
+// function that reset order History array in redux store
+export const clearOrderHistory = () => ({
+  type: CLEAR_ORDER_HISTORY,
+});
+// function that reset redux state except order history and fetched products
+export const clearGlobalState = () => ({
+  type: CLEAR_GLOBAL_STATE,
 });
 
 // function that fetch all the products from the backend
@@ -77,4 +93,31 @@ export const totalPriceOfProducts = () => async (dispatch, getState) => {
     console.log(error);
     throw error;
   }
+};
+// function that is called on order completion
+export const completeOrder = (userInfo, history) => async (
+  dispatch,
+  getState
+) => {
+  // redux props
+  const selectedProducts = getState().appReducer.selectedProducts;
+  const totalPrice = getState().appReducer.totalPriceOfProducts;
+  const orderHistory = getState().appReducer.orderHistory;
+  // getting the date of the order
+  const date = new Date();
+  const orderDate =
+    date.getDate() + "/" + date.getMonth() + 1 + "/" + date.getFullYear();
+  // new order to be saved in order history
+  const newOrder = {
+    userInfo,
+    selectedProducts,
+    totalPrice,
+    orderDate,
+  };
+  // new history array to be updated and dispatched
+  const newHistory = [...orderHistory, newOrder];
+  // save newly updated Order history in redux orderHistory and clear global state
+  await dispatch(orderHistorySet(newHistory));
+  await dispatch(clearGlobalState());
+  history.push("/order-history");
 };
