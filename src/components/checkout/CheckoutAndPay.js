@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "25px",
   },
 }));
-
+// start of the component
 function CheckoutAndPay(props) {
   const classes = useStyles();
   // redux state props

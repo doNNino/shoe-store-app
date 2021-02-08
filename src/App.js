@@ -11,7 +11,7 @@ import CheckoutPage from "./components/checkout/Checkout";
 import OrderHistoryPage from "./components/orderHistory/OrderHistory";
 //redux actions imports
 import { fetchAllProducts } from "./redux/actions/appActions";
-
+// start of the main app
 function App(props) {
   // redux action functions destructuring
   const { fetchAllProducts } = props;

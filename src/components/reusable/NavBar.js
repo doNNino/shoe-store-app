@@ -100,11 +100,16 @@ function NavBar(props) {
   const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
   // value that shows is the mobile menu open
   const isMobileMenuOpen = Boolean(mobileAnchorEl);
-  // function for closing mobile menu
+  /**
+   * function for closing mobile menu
+   */
   const handleMobileMenuClose = () => {
     setMobileAnchorEl(null);
   };
-  // function for opening mobile menu
+  /**
+   * function for opening mobile menu
+   * @param {object} event- event object
+   */
   const handleMobileMenuOpen = (event) => {
     setMobileAnchorEl(event.currentTarget);
   };

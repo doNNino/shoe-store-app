@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
 }));
-
+// main function starts here
 export default function SwitchListSecondary(props) {
   const classes = useStyles();
   const [checked, setChecked] = useState([]);

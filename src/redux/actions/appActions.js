@@ -13,37 +13,53 @@ import axios from "axios";
 
 // redux actions file
 
-// function that sets new array which contains fetched products
+/**
+ * function that sets new array which contains fetched products
+ * @param {array} data- fetched array of data
+ */
 export const fetchAllProductsSet = (data) => ({
   type: FETCH_PRODUCTS,
   payload: data,
 });
-
-// function that sets new array with added product to the reducer state
+/**
+ * function that sets new array with added product to the reducer state
+ * @param {array} data - new array with added product
+ */
 export const addProductToCartSet = (data) => ({
   type: SELECTED_PRODUCTS,
   payload: data,
 });
-// funciton that sets the total price value of selected products(products added to the cart)
+/**
+ * funciton that sets the total price value of selected products(products added to the cart)
+ * @param {Number} data - total price value
+ */
 export const totalPriceOfProductsSet = (data) => ({
   type: TOTAL_PRICE_OF_PRODUCTS,
   payload: data,
 });
-// funciton that sets the order History after completed purchase
+/**
+ * funciton that sets the order History after completed purchase
+ * @param {array} data - array with order history objects
+ */
 export const orderHistorySet = (data) => ({
   type: ORDER_HISTORY,
   payload: data,
 });
-// function that reset order History array in redux store
+/**
+ * function that reset order History array in redux store
+ */
 export const clearOrderHistory = () => ({
   type: CLEAR_ORDER_HISTORY,
 });
-// function that reset redux state except order history and fetched products
+/**
+ * function that reset redux state except order history and fetched products
+ */
 export const clearGlobalState = () => ({
   type: CLEAR_GLOBAL_STATE,
 });
-
-// function that fetch all the products from the backend
+/**
+ * function that fetch all the products from the backend
+ */
 export const fetchAllProducts = () => async (dispatch, getState) => {
   try {
     // send get request to fetch products
@@ -58,8 +74,10 @@ export const fetchAllProducts = () => async (dispatch, getState) => {
     throw error;
   }
 };
-
-// funciton that adds new product into the cart (into the existing products array saved in reducer state)
+/**
+ * funciton that adds new product into the cart (into the existing products array saved in reducer state)
+ * @param {Object} product - newly added product object
+ */
 export const addProductToCart = (product) => async (dispatch, getState) => {
   try {
     // array of already selected products
@@ -79,7 +97,9 @@ export const addProductToCart = (product) => async (dispatch, getState) => {
     throw error;
   }
 };
-// function that calculates the total price of the selected products
+/**
+ * function that calculates the total price of the selected products
+ */
 export const totalPriceOfProducts = () => async (dispatch, getState) => {
   try {
     const selectedProducts = getState().appReducer.selectedProducts;
@@ -94,7 +114,11 @@ export const totalPriceOfProducts = () => async (dispatch, getState) => {
     throw error;
   }
 };
-// function that is called on order completion
+/**
+ * function that is called on order completion
+ * @param {Object} userInfo - object that contains userInfo
+ * @param {Object} history - history object
+ */
 export const completeOrder = (userInfo, history) => async (
   dispatch,
   getState

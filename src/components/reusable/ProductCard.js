@@ -53,7 +53,9 @@ function ProductCard(props) {
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   // redux state props and functions
   const { addProductToCart } = props;
-
+  /**
+   * function called upon clicking Add To Cart button
+   */
   const addToCart = async () => {
     await addProductToCart(props.itemDetails);
   };

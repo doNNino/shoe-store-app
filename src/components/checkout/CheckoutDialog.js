@@ -53,11 +53,16 @@ function CheckoutDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
+  /**
+   * function called when pay button is clicked
+   */
   const handlePay = async () => {
     await completeOrder(userInfo, props.history);
   };
-
+  /**
+   * function called when input of the textfield is changed
+   * @param {object} event - event object
+   */
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserInfo((prevState) => ({ ...prevState, [name]: value }));

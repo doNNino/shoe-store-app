@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     background: ` url(${picture2}) no-repeat center`,
   },
 }));
-
+// main function start here
 export default function CheckoutProductCard(props) {
   const classes = useStyles();
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
