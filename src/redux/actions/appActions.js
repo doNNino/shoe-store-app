@@ -49,9 +49,9 @@ export const addProductToCart = (product) => async (dispatch, getState) => {
     // array of already selected products
     let selectedProducts = [...getState().appReducer.selectedProducts];
     // array of Ids of selected products
-    let selectedProductsIds = selectedProducts.map((item) => item.productId);
+    let selectedProductsIds = selectedProducts.map((item) => item._id);
     // adding product to the selected products if its not already added(by checking if Id is not in the array of selected products Ids)
-    if (!selectedProductsIds.includes(product.productId)) {
+    if (!selectedProductsIds.includes(product._id)) {
       // pushing new product in the array of selected products
       await selectedProducts.push(product);
       // dispatching function to set new array of selected products
