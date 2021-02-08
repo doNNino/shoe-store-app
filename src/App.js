@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // Main scss file import
 import "./App.scss";
 // redux import
@@ -9,8 +9,17 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from "./components/home/Home";
 import CheckoutPage from "./components/checkout/Checkout";
 import OrderHistoryPage from "./components/orderHistory/OrderHistory";
+//redux actions imports
+import { fetchAllProducts } from "./redux/actions/appActions";
 
 function App(props) {
+  // redux action functions destructuring
+  const { fetchAllProducts } = props;
+
+  // fetch the products
+  useEffect(() => {
+    fetchAllProducts();
+  }, [fetchAllProducts]);
   // initial router for the app
   return (
     <Router>
@@ -25,6 +34,6 @@ const mapStateToProps = (state /* , ownProps*/) => {
   return {};
 };
 // redux action functions object
-const mapDispatchToProps = {};
+const mapDispatchToProps = { fetchAllProducts };
 // default export of the app connected with redux
 export default connect(mapStateToProps, mapDispatchToProps)(App);

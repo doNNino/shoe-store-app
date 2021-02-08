@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+// redux import
+import { connect } from "react-redux";
 // custom components
 import NavBar from "../reusable/NavBar";
 // MaterialUI components
@@ -6,8 +8,6 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ProductCard from "../reusable/ProductCard";
 import { makeStyles } from "@material-ui/core/styles";
-// JSON object with products inside
-import productsObj from "../../products.json";
 
 // custom styles for the component
 const useStyles = makeStyles((theme) => ({
@@ -19,16 +19,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 // start of the component
-export default function Home() {
+function Home(props) {
+  // redux store props destructuring
+  const { allProducts } = props;
+  // use custom styles
   const classes = useStyles();
-  const { products } = productsObj;
+
   return (
     <div className="w-100 h-100">
       <NavBar />
       <div className={classes.root}>
         <Container>
           <Grid container className={classes.gridStyle}>
-            {products.map((item) => (
+            {allProducts.map((item) => (
               <ProductCard itemDetails={item} key={item.productId} />
             ))}
           </Grid>
@@ -37,3 +40,11 @@ export default function Home() {
     </div>
   );
 }
+// redux state props function
+const mapStateToProps = (state /* , ownProps*/) => {
+  return { allProducts: state.appReducer.allProducts };
+};
+// redux action functions object
+const mapDispatchToProps = {};
+// default export of the app connected with redux
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
