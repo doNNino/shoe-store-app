@@ -1,6 +1,8 @@
 # shoe-store-app
 
-Shoe store app developed for a practice and as a test in a job interview process
+Shoe store app developed for a practice and as a test in a job interview process  
+Backend repository for this app: https://github.com/doNNino/shoe-store-app-backend.  
+In order for this app to work on your local machine you need to be provided with .env file(for that please contact me on email).
 
 # Getting Started with Create React App
 
