@@ -4,6 +4,7 @@ import {
   SELECTED_PRODUCTS,
   TOTAL_PRICE_OF_PRODUCTS,
   ORDER_HISTORY,
+  CLEAR_ORDER_HISTORY,
   CLEAR_GLOBAL_STATE,
 } from "../Types";
 // Define an initial state value for the app
@@ -29,6 +30,9 @@ export function appReducer(state = initialState, action) {
     // order History of completed orders
     case ORDER_HISTORY:
       return { ...state, orderHistory: action.payload };
+    // clear order History
+    case CLEAR_ORDER_HISTORY:
+      return { ...state, orderHistory: [] };
     // clear global state except order History and all products
     case CLEAR_GLOBAL_STATE:
       return { ...state, selectedProducts: [], totalPriceOfProducts: 0 };

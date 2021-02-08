@@ -7,5 +7,7 @@ export const SELECTED_PRODUCTS = "SELECTED_PRODUCTS";
 export const TOTAL_PRICE_OF_PRODUCTS = "TOTAL_PRICE_OF_PRODUCTS";
 // order history
 export const ORDER_HISTORY = "ORDER_HISTORY";
+// clear oreder history
+export const CLEAR_ORDER_HISTORY = "CLEAR_ORDER_HISTORY";
 // clear redux global state except order History and all products
 export const CLEAR_GLOBAL_STATE = "CLEAR_GLOBAL_STATE";
