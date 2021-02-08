@@ -48,7 +48,7 @@ function ProductCard(props) {
   const classes = useStyles();
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   // redux state props and functions
-  const { selectedProducts, addProductToCart } = props;
+  const { addProductToCart } = props;
 
   const addToCart = async () => {
     await addProductToCart(props.itemDetails);
@@ -92,9 +92,7 @@ function ProductCard(props) {
 }
 // redux state props function
 const mapStateToProps = (state /* , ownProps*/) => {
-  return {
-    selectedProducts: state.appReducer.selectedProducts,
-  };
+  return {};
 };
 // redux action functions object
 const mapDispatchToProps = { addProductToCart };
