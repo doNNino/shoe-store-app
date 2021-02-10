@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: "25px",
   },
+  priceStyle: {
+    fontSize: "1.25rem",
+    fontWeight: 800,
+  },
 }));
 // start of the component
 function CheckoutAndPay(props) {
@@ -25,7 +29,12 @@ function CheckoutAndPay(props) {
   return (
     <div className={classes.divStyle}>
       <div>
-        <Typography variant="h5" color="textSecondary" component="h6">
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          component="p"
+          className={classes.priceStyle}
+        >
           Total Price : {totalPriceOfProducts} $
         </Typography>
       </div>
