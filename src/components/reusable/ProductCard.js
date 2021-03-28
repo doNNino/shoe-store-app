@@ -40,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyNameStyle: {
     minHeight: 64,
+    fontSize: "1.25rem",
+    fontWeight: 800,
+  },
+  typographyPriceStyle: {
+    fontSize: "1.25rem",
+    fontWeight: 800,
   },
   cardActionButtonContainerStyle: {
     display: "flex",
@@ -71,8 +77,8 @@ function ProductCard(props) {
           <CardContent className={classes.cardContentStyle}>
             <Typography
               gutterBottom
-              variant="h5"
-              component="h2"
+              variant="body1"
+              component="p"
               className={classes.typographyNameStyle}
             >
               {Name}
@@ -84,7 +90,12 @@ function ProductCard(props) {
               <Typography variant="body2" color="textSecondary" component="p">
                 Name : {Name}
               </Typography>
-              <Typography variant="h6" color="textSecondary" component="h6">
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                className={classes.typographyPriceStyle}
+              >
                 Price : {Price} $
               </Typography>
             </div>

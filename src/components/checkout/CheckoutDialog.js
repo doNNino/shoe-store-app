@@ -24,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
   textFieldStyle: {
     margin: "15px",
   },
+  infoSubtitleStyle: {
+    textAlign: "start",
+    fontSize: "1rem",
+    fontWeight: 500,
+  },
 }));
 // main function starts here
 function CheckoutDialog(props) {
@@ -85,7 +90,7 @@ function CheckoutDialog(props) {
           <DialogContentText>
             To succesfully complete purchase, please fill this form
           </DialogContentText>
-          <h6 style={{ textAlign: "start" }}>Personal Info:</h6>
+          <p className={classes.infoSubtitleStyle}>Personal Info:</p>
           <TextField
             autoFocus
             margin="dense"
@@ -136,7 +141,7 @@ function CheckoutDialog(props) {
             className={classes.textFieldStyle}
             onChange={handleInputChange}
           />
-          <h6 style={{ textAlign: "start" }}>Credit Card Info:</h6>
+          <p className={classes.infoSubtitleStyle}>Credit Card Info:</p>
           <TextField
             autoFocus
             margin="dense"

@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
+  priceTypographyStyle: {
+    fontSize: "1.25rem",
+    fontWeight: 800,
+  },
   priceDivStyle: {
     display: "flex",
     flexDirection: "column",
@@ -38,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   quantityTypographyStyle: {
     display: "flex",
     alignItems: "center",
+    fontSize: "1rem",
   },
   quantityDivStyle: {
     display: "flex",
@@ -73,15 +78,20 @@ export default function CheckoutProductCard(props) {
         <Typography variant="body2" color="textSecondary" component="p">
           Name : {Name}
         </Typography>
-        <Typography variant="h6" color="textSecondary" component="h6">
+        <Typography
+          variant="body1"
+          color="textSecondary"
+          component="p"
+          className={classes.priceTypographyStyle}
+        >
           Price : {Price} $
         </Typography>
       </Grid>
       <Grid item className={classes.quantityDivStyle} xl={3} sm={12}>
         <Typography
-          variant="h6"
+          variant="body2"
           color="textSecondary"
-          component="h6"
+          component="p"
           className={classes.quantityTypographyStyle}
         >
           Quantity : 1
