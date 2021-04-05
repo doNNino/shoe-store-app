@@ -96,6 +96,14 @@ export default function SwitchListSecondary(props) {
                 <strong>Price: </strong>
                 {item.Price}
               </p>
+              <p>
+                <strong>Quantity: </strong>
+                {item.Quantity}
+              </p>
+              <p>
+                <strong>Total Price For Product: </strong>
+                {item.Price * item.Quantity}
+              </p>
             </div>
           </ListItem>
         ))}

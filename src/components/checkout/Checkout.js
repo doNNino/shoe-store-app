@@ -56,7 +56,11 @@ function Checkout(props) {
               className={classes.gridStyle}
             >
               {selectedProducts.map((item) => (
-                <CheckoutProductCard itemDetails={item} key={item._id} />
+                <CheckoutProductCard
+                  itemDetails={item}
+                  key={item._id}
+                  Quantity={item.Quantity}
+                />
               ))}
               <Grid item className="w-100">
                 <CheckoutAndPay history={props.history} />
