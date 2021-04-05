@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 // MaterialUI components
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -7,6 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 // materialUI icons imports
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+// redux actions imports
+import { changeQuantity } from "../../redux/actions/appActions";
 
 import picture2 from "../../assets/AV6243-400_350_350px.webp";
 
@@ -65,8 +68,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 // main function start here
-export default function CheckoutProductCard(props) {
+function CheckoutProductCard(props) {
   const classes = useStyles();
+  // redux actions props
+  const { changeQuantity } = props;
+  // redux store props
+  const { Quantity } = props;
+  // item details
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   return (
     <Grid className={`w-100 ${classes.containerStyle}`}>
@@ -94,14 +102,14 @@ export default function CheckoutProductCard(props) {
           component="p"
           className={classes.quantityTypographyStyle}
         >
-          Quantity : 1
+          Quantity : {Quantity}
         </Typography>
         <div className={classes.quantityTypographyStyle}>
           <IconButton
             aria-label="increase-quantity"
             size="medium"
             className={classes.iconButtonStyle}
-            disabled
+            onClick={() => changeQuantity(_id, "add")}
           >
             <ArrowUpwardIcon fontSize="inherit" />
           </IconButton>
@@ -109,7 +117,7 @@ export default function CheckoutProductCard(props) {
             aria-label="decrease-quantity"
             size="medium"
             className={classes.iconButtonStyle}
-            disabled
+            onClick={() => changeQuantity(_id, "remove")}
           >
             <ArrowDownwardIcon fontSize="inherit" />
           </IconButton>
@@ -118,3 +126,16 @@ export default function CheckoutProductCard(props) {
     </Grid>
   );
 }
+// redux state prop function
+const mapStateToProps = (state /* , ownProps*/) => {
+  return {};
+};
+// redux actions function object
+const mapDispatchToProps = { changeQuantity };
+
+// default export of the component with redux connect
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CheckoutProductCard);

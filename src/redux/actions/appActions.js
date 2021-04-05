@@ -25,7 +25,7 @@ export const fetchAllProductsSet = (data) => ({
  * function that sets new array with added product to the reducer state
  * @param {array} data - new array with added product
  */
-export const addProductToCartSet = (data) => ({
+export const selectedProductsSet = (data) => ({
   type: SELECTED_PRODUCTS,
   payload: data,
 });
@@ -86,16 +86,56 @@ export const addProductToCart = (product) => async (dispatch, getState) => {
     let selectedProductsIds = selectedProducts.map((item) => item._id);
     // adding product to the selected products if its not already added(by checking if Id is not in the array of selected products Ids)
     if (!selectedProductsIds.includes(product._id)) {
+      // add the quantity property for the selected product
+      product.Quantity = 1;
       // pushing new product in the array of selected products
       await selectedProducts.push(product);
       // dispatching function to set new array of selected products
-      await dispatch(addProductToCartSet(selectedProducts));
+      await dispatch(selectedProductsSet(selectedProducts));
       await dispatch(totalPriceOfProducts());
     }
   } catch (error) {
     console.log(error);
     throw error;
   }
+};
+/**
+ * function that changes the quantity of the product with given parameters
+ * @param {*} itemId - Id of the product for which we are changing quantity
+ * @param {*} actionType - type of the action, it can be: 'add' to increment quantity or 'remove' to decrement quantity(if quantity reaches 0 selected product is removed(deselected))
+ * @returns
+ */
+export const changeQuantity = (productId, actionType) => async (
+  dispatch,
+  getState
+) => {
+  // selected products array
+  const selectedProducts = [...getState().appReducer.selectedProducts];
+  // selected product(item)
+  const selectedProduct = selectedProducts.filter(
+    (item) => item._id === productId
+  )[0];
+  // Index of selected product(item)
+  const indexOfselectedProduct = selectedProducts.indexOf(selectedProduct);
+  // Depending of the action type we are either incrementing or decrementing quantity
+  switch (actionType) {
+    case "add": {
+      selectedProduct.Quantity = selectedProduct.Quantity + 1;
+      break;
+    }
+    case "remove": {
+      // if quantity reaches 0, product is removed(deselected)
+      selectedProduct.Quantity === 1
+        ? selectedProducts.splice(indexOfselectedProduct, 1)
+        : (selectedProduct.Quantity = selectedProduct.Quantity - 1);
+      break;
+    }
+    default:
+  }
+  // dispatch new selected products(with new Quantity values)
+  await dispatch(selectedProductsSet(selectedProducts));
+  // Recalculate the total price for products
+  await dispatch(totalPriceOfProducts());
 };
 /**
  * function that calculates the total price of the selected products
@@ -105,7 +145,7 @@ export const totalPriceOfProducts = () => async (dispatch, getState) => {
     const selectedProducts = getState().appReducer.selectedProducts;
     let newTotalPrice = 0;
     for (const product of selectedProducts) {
-      newTotalPrice += product.Price;
+      newTotalPrice += product.Price * product.Quantity;
     }
     // dispatch the newly calculated total price of selected products to the redux store
     await dispatch(totalPriceOfProductsSet(newTotalPrice));
