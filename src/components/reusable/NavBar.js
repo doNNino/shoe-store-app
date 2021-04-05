@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // react router NavLink import
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // redux import
 import { connect } from "react-redux";
 // custom style functions from materialUI import
@@ -60,6 +61,14 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
     },
   },
+  navLinkActive: {
+    color: "#ff94ba",
+    margin: "0px 20px",
+    "&:hover": {
+      color: "#ff94ba",
+      textDecoration: "none",
+    },
+  },
   mobileNavLink: {
     width: "100%",
     "&:hover": {
@@ -100,6 +109,9 @@ function NavBar(props) {
   const [mobileAnchorEl, setMobileAnchorEl] = useState(null);
   // value that shows is the mobile menu open
   const isMobileMenuOpen = Boolean(mobileAnchorEl);
+  // checks which route is currently active
+  const currentLocation = useLocation().pathname || "";
+
   /**
    * function for closing mobile menu
    */
@@ -128,7 +140,7 @@ function NavBar(props) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <NavLink to="/Home" className={classes.mobileNavLink}>
+        <NavLink to="/home" className={classes.mobileNavLink}>
           <IconButton aria-label="home" color="inherit">
             <HomeIcon />
           </IconButton>
@@ -176,13 +188,27 @@ function NavBar(props) {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <NavLink to="/Home" className={classes.navLink}>
+            <NavLink
+              to="/home"
+              className={
+                ["/home", "/"].includes(currentLocation)
+                  ? classes.navLinkActive
+                  : classes.navLink
+              }
+            >
               <IconButton aria-label="home" color="inherit">
                 <HomeIcon />
               </IconButton>
               Home
             </NavLink>
-            <NavLink to="/checkout" className={classes.navLink}>
+            <NavLink
+              to="/checkout"
+              className={
+                currentLocation === "/checkout"
+                  ? classes.navLinkActive
+                  : classes.navLink
+              }
+            >
               <IconButton aria-label="checkout" color="inherit">
                 <Badge badgeContent={selectedProductsCount} color="secondary">
                   <ShoppingCartIcon />
@@ -190,7 +216,14 @@ function NavBar(props) {
               </IconButton>
               Checkout
             </NavLink>
-            <NavLink to="/order-history" className={classes.navLink}>
+            <NavLink
+              to="/order-history"
+              className={
+                currentLocation === "/order-history"
+                  ? classes.navLinkActive
+                  : classes.navLink
+              }
+            >
               <IconButton aria-label="order-history" color="inherit">
                 <OrderHistoryIcon />
               </IconButton>
