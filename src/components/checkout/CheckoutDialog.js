@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 // redux import
 import { connect } from "react-redux";
+// form validation import
+import { useForm, Controller } from "react-hook-form";
 // MaterialUI components
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -33,16 +35,13 @@ const useStyles = makeStyles((theme) => ({
 // main function starts here
 function CheckoutDialog(props) {
   const [open, setOpen] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    Name: "",
-    City: "",
-    Address: "",
-    Email: "",
-    Telephone: "",
-    CardName: "",
-    CardNumber: "",
-    CardExpDate: "",
-  });
+
+  // form validation functions destructuring
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   // redux props destructured
   const { completeOrder } = props;
@@ -61,16 +60,8 @@ function CheckoutDialog(props) {
   /**
    * function called when pay button is clicked
    */
-  const handlePay = async () => {
-    await completeOrder(userInfo, props.history);
-  };
-  /**
-   * function called when input of the textfield is changed
-   * @param {object} event - event object
-   */
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserInfo((prevState) => ({ ...prevState, [name]: value }));
+  const handlePay = async (data) => {
+    await completeOrder(data, props.history);
   };
 
   return (
@@ -91,86 +82,175 @@ function CheckoutDialog(props) {
             To succesfully complete purchase, please fill this form
           </DialogContentText>
           <p className={classes.infoSubtitleStyle}>Personal Info:</p>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name & Surname"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Name & Surname"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.Name}
+                helperText={errors.Name ? errors.Name.message : ""}
+                {...field}
+              />
+            )}
             name="Name"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{
+              required: "Please populate Name & Surname field to continue",
+            }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="city"
-            label="City"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="city"
+                label="City"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.City}
+                helperText={errors.City ? errors.City.message : ""}
+                {...field}
+              />
+            )}
             name="City"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{ required: "Please populate City field to continue" }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="address"
-            label="Address"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="address"
+                label="Address"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.Address}
+                helperText={errors.Address ? errors.Address.message : ""}
+                {...field}
+              />
+            )}
             name="Address"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{ required: "Please populate Address field to continue" }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email Address"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="email"
+                label="Email Address"
+                type="email"
+                className={classes.textFieldStyle}
+                error={errors.Email}
+                helperText={errors.Email ? errors.Email.message : ""}
+                {...field}
+              />
+            )}
             name="Email"
-            type="email"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{
+              required: "Please populate Email field to continue",
+              pattern: {
+                value: /^\S+@\S+$/,
+                message: "Please enter regular Email",
+              },
+            }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="telephone"
-            label="Telephone"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="telephone"
+                label="Telephone"
+                type="tel"
+                className={classes.textFieldStyle}
+                error={errors.Telephone}
+                helperText={errors.Telephone ? errors.Telephone.message : ""}
+                {...field}
+              />
+            )}
             name="Telephone"
-            type="tel"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{
+              required: "Please populate Telephone field to continue",
+            }}
+            defaultValue=""
+            control={control}
           />
           <p className={classes.infoSubtitleStyle}>Credit Card Info:</p>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="card-holder-name"
-            label="Cardholder Name"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="card-holder-name"
+                label="Cardholder Name"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.CardName}
+                helperText={errors.CardName ? errors.CardName.message : ""}
+                {...field}
+              />
+            )}
             name="CardName"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{ required: "Please populate Card Name field to continue" }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="card-number"
-            label="Card Number"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="card-number"
+                label="Card Number"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.CardNumber}
+                helperText={errors.CardNumber ? errors.CardNumber.message : ""}
+                {...field}
+              />
+            )}
             name="CardNumber"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{
+              required: "Please populate Card Number field to continue",
+            }}
+            defaultValue=""
+            control={control}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="card-expiration-date"
-            label="Card Expiration Date"
+          <Controller
+            render={({ field }) => (
+              <TextField
+                autoFocus
+                margin="dense"
+                id="card-expiration-date"
+                label="Card Expiration Date"
+                type="text"
+                className={classes.textFieldStyle}
+                error={errors.CardExpDate}
+                helperText={
+                  errors.CardExpDate ? errors.CardExpDate.message : ""
+                }
+                {...field}
+              />
+            )}
             name="CardExpDate"
-            type="text"
-            className={classes.textFieldStyle}
-            onChange={handleInputChange}
+            rules={{
+              required:
+                "Please populate Card Expiration Date field to continue",
+            }}
+            defaultValue=""
+            control={control}
           />
         </DialogContent>
         <DialogActions className={classes.dialogActionStyle}>
@@ -178,7 +258,7 @@ function CheckoutDialog(props) {
             Cancel
           </Button>
           <Button
-            onClick={handlePay}
+            onClick={handleSubmit(handlePay)}
             color="primary"
             disabled={!selectedProducts.length}
           >
