@@ -14,9 +14,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  gridStyle: {
-    padding: "25px",
-  },
 }));
 // start of the component
 function Home(props) {
@@ -29,8 +26,8 @@ function Home(props) {
     <div className="w-100 h-100">
       <NavBar />
       <div className={classes.root}>
-        <Container>
-          <Grid container className={classes.gridStyle}>
+        <Container maxWidth="xl">
+          <Grid container>
             {allProducts.map((item) => (
               <ProductCard itemDetails={item} key={item._id} />
             ))}

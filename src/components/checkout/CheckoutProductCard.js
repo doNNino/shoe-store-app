@@ -78,7 +78,9 @@ function CheckoutProductCard(props) {
       <Grid
         item
         className={classes.imageDivStyle}
-        style={`background: 'url(${process.env.PUBLIC_URL}assets/${ImgSrc}.jpg) no-repeat center`}
+        style={{
+          background: `url(${process.env.PUBLIC_URL}assets/${ImgSrc}.jpg) no-repeat center`,
+        }}
         xl={5}
         sm={12}
       ></Grid>
