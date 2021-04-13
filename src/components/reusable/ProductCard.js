@@ -12,8 +12,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import picture2 from "../../assets/AV6243-400_350_350px.webp";
-
 // import actions
 import { addProductToCart } from "../../redux/actions/appActions.js";
 
@@ -73,7 +71,11 @@ function ProductCard(props) {
     <Grid item lg={4} md={6} sm={12} xs={12} className={classes.gridStyle}>
       <Card className={classes.root}>
         <CardActionArea>
-          <CardMedia className={classes.media} image={picture2} title={Name} />
+          <CardMedia
+            className={classes.media}
+            image={`${process.env.PUBLIC_URL}assets/${ImgSrc}.jpg`}
+            title={Name}
+          />
           <CardContent className={classes.cardContentStyle}>
             <Typography
               gutterBottom
