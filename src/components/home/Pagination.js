@@ -20,7 +20,8 @@ export default function BasicPagination(props) {
       <Pagination
         count={props.count}
         color="primary"
-        onChange={(event, page) => props.paginate(page)}
+        page={props.page}
+        onChange={(event, changePage) => props.paginate(changePage)}
       />
     </div>
   );
