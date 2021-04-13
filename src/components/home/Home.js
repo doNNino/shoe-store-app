@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 // redux import
 import { connect } from "react-redux";
 // custom components
 import NavBar from "../reusable/NavBar";
+import Pagination from "./Pagination";
 // MaterialUI components
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -19,6 +20,20 @@ const useStyles = makeStyles((theme) => ({
 function Home(props) {
   // redux store props destructuring
   const { allProducts } = props;
+  // state props
+  const [currentPage, setCurrentPage] = useState(1);
+  const [ProductsPerPage] = useState(8);
+  // pagination props
+  const indexOfLastProduct = currentPage * ProductsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - ProductsPerPage;
+  const curentProducts = allProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const count = Math.ceil(allProducts.length / ProductsPerPage);
+
+  // function called when pagination number is changed
+  const paginate = (page) => setCurrentPage(page);
   // use custom styles
   const classes = useStyles();
 
@@ -28,9 +43,12 @@ function Home(props) {
       <div className={classes.root}>
         <Container maxWidth="xl">
           <Grid container>
-            {allProducts.map((item) => (
+            {curentProducts.map((item) => (
               <ProductCard itemDetails={item} key={item._id} />
             ))}
+          </Grid>
+          <Grid item className="w-100 p-0">
+            <Pagination count={count} paginate={paginate} />
           </Grid>
         </Container>
       </div>
