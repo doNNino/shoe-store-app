@@ -11,8 +11,6 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 // redux actions imports
 import { changeQuantity } from "../../redux/actions/appActions";
 
-import picture2 from "../../assets/AV6243-400_350_350px.webp";
-
 // custom styles for the component
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "230px",
     minHeight: "200px",
     backgroundSize: "270px 200px",
-    background: ` url(${picture2}) no-repeat center`,
   },
 }));
 // main function start here
@@ -78,7 +75,13 @@ function CheckoutProductCard(props) {
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
   return (
     <Grid className={`w-100 ${classes.containerStyle}`}>
-      <Grid item className={classes.imageDivStyle} xl={5} sm={12}></Grid>
+      <Grid
+        item
+        className={classes.imageDivStyle}
+        style={`background: 'url(${process.env.PUBLIC_URL}assets/${ImgSrc}.jpg) no-repeat center`}
+        xl={5}
+        sm={12}
+      ></Grid>
       <Grid item className={classes.priceDivStyle} xl={4} sm={12}>
         <Typography variant="body2" color="textSecondary" component="p">
           Brand : {Brand}
