@@ -19,13 +19,13 @@ import { addProductToCart } from "../../redux/actions/appActions.js";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 400,
-    minWidth: 320,
+    minWidth: 270,
     textAlign: "center",
     boxShadow: "0px 1px 20px 0px #476d96",
   },
   media: {
     height: 140,
-    backgroundSize: "316px 250px",
+    backgroundSize: "270px 250px",
   },
   gridStyle: {
     display: "flex",
@@ -68,7 +68,7 @@ function ProductCard(props) {
   };
 
   return (
-    <Grid item lg={4} md={6} sm={12} xs={12} className={classes.gridStyle}>
+    <Grid item lg={3} md={4} sm={6} xs={12} className={classes.gridStyle}>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
