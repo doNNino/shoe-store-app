@@ -35,7 +35,11 @@ function CheckoutAndPay(props) {
           component="p"
           className={classes.priceStyle}
         >
-          Total Price : {totalPriceOfProducts} $
+          Total Price:{" "}
+          {new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "RSD",
+          }).format(totalPriceOfProducts)}
         </Typography>
       </div>
       <div className="mt-3">
