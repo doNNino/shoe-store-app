@@ -4,6 +4,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Switch from "@material-ui/core/Switch";
+import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -12,17 +13,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   listItemStyle: {
+    boxShadow: "0px 0px 5px 0px #476d96",
+    marginBottom: "20px",
+    borderRadius: "5px",
+  },
+  listItemInfoStyle: {
     display: "flex",
     width: "100%",
-    justifyContent: "space-evenly",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
     },
-  },
-  listProductStyle: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "column",
+    "& p": {
+      width: "30%",
+      [theme.breakpoints.down("xs")]: {
+        width: "100%",
+      },
+    },
   },
 }));
 // main function starts here
@@ -52,9 +58,9 @@ export default function SwitchListSecondary(props) {
   const { id } = props;
   const { Name } = userInfo;
   return (
-    <List className={classes.root}>
+    <List className={(classes.root, classes.listItemStyle)}>
       <ListItem>
-        <div className={classes.listItemStyle}>
+        <div className={classes.listItemInfoStyle}>
           <p className="m-0">
             <strong>Name: </strong>
             {Name}
@@ -65,7 +71,10 @@ export default function SwitchListSecondary(props) {
           </p>
           <p className="m-0">
             <strong>Total Price: </strong>
-            {totalPrice}
+            {new Intl.NumberFormat("de-DE", {
+              style: "currency",
+              currency: "RSD",
+            }).format(totalPrice)}
           </p>
         </div>
         <ListItemSecondaryAction>
@@ -84,25 +93,25 @@ export default function SwitchListSecondary(props) {
             : { display: "none" }
         }
       >
+        <Divider light={true} variant="middle" />
         {selectedProducts.map((item, index) => (
           <ListItem key={index}>
-            <div className={classes.listProductStyle} key={index}>
-              <p>{index + 1}.</p>
+            <div className={classes.listItemInfoStyle} key={index}>
+              <span>{index + 1}.</span>
               <p>
                 <strong>Name: </strong>
                 {item.Name}
-              </p>
-              <p>
-                <strong>Price: </strong>
-                {item.Price}
               </p>
               <p>
                 <strong>Quantity: </strong>
                 {item.Quantity}
               </p>
               <p>
-                <strong>Total Price For Product: </strong>
-                {item.Price * item.Quantity}
+                <strong>Price: </strong>
+                {new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "RSD",
+                }).format(item.Price)}
               </p>
             </div>
           </ListItem>

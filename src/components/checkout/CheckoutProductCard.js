@@ -97,7 +97,11 @@ function CheckoutProductCard(props) {
           component="p"
           className={classes.priceTypographyStyle}
         >
-          Price : {Price} $
+          Price:{" "}
+          {new Intl.NumberFormat("de-DE", {
+            style: "currency",
+            currency: "RSD",
+          }).format(Price)}
         </Typography>
       </Grid>
       <Grid item className={classes.quantityDivStyle} xl={3} sm={12}>
