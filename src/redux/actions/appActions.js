@@ -170,7 +170,7 @@ export const completeOrder = (userInfo, history) => async (
   // getting the date of the order
   const date = new Date();
   const orderDate =
-    date.getDate() + "/" + date.getMonth() + 1 + "/" + date.getFullYear();
+    date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
   // new order to be saved in order history
   const newOrder = {
     userInfo,
