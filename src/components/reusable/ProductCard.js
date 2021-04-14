@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 // start of the component
 function ProductCard(props) {
   const classes = useStyles();
-  const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
+  const { Brand, ImgSrc, Name, Price } = props.itemDetails;
   // redux state props and functions
   const { addProductToCart } = props;
   /**
@@ -98,7 +98,11 @@ function ProductCard(props) {
                 component="p"
                 className={classes.typographyPriceStyle}
               >
-                Price : {Price} $
+                Price:{" "}
+                {new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "RSD",
+                }).format(Price)}
               </Typography>
             </div>
           </CardContent>
