@@ -134,7 +134,7 @@ export const changeQuantity = (productId, actionType, history) => async (
   }
   // dispatch new selected products(with new Quantity values)
   await dispatch(selectedProductsSet(selectedProducts));
-  // check if all products are unselected(in that case navigate back to homepage)
+  // check if all products are deselected(in that case navigate back to homepage)
   if (actionType === "remove" && selectedProducts.length === 0) {
     history.push("/home");
   }
