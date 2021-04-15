@@ -22,25 +22,25 @@ const useStyles = makeStyles((theme) => ({
   containerStyle: {
     display: "flex",
     flexDirection: "column",
-    minHeight: "200px",
+    minHeight: "150px",
     marginTop: "20px",
-    borderBottom: "1px solid black",
-    justifyContent: "space-between",
-    [theme.breakpoints.up("md")]: {
+    justifyContent: "space-evenly",
+    [theme.breakpoints.up("xs")]: {
       flexDirection: "row",
     },
   },
   priceTypographyStyle: {
-    fontSize: "1.25rem",
     fontWeight: 800,
   },
   priceDivStyle: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    textAlign: "center",
-    [theme.breakpoints.up("lg")]: {
-      textAlign: "start",
+    textAlign: "start",
+    height: "150px",
+    [theme.breakpoints.down("xs")]: {
+      textAlign: "center",
+      height: "100px",
     },
   },
   quantityTypographyStyle: {
@@ -51,8 +51,10 @@ const useStyles = makeStyles((theme) => ({
   quantityDivStyle: {
     display: "flex",
     justifyContent: "space-evenly",
-    [theme.breakpoints.down("sm")]: {
+    height: "150px",
+    [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
+      height: "100px",
       alignItems: "center",
     },
   },
@@ -62,9 +64,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageDivStyle: {
-    minWidth: "230px",
-    minHeight: "200px",
-    backgroundSize: "270px 200px",
+    width: "150px",
+    height: "150px",
+    backgroundSize: "150px 150px !important",
+    [theme.breakpoints.down("xs")]: {
+      width: "220px",
+      height: "200px",
+      backgroundSize: "220px 200px !important",
+    },
   },
 }));
 // main function start here
@@ -79,17 +86,17 @@ function CheckoutProductCard(props) {
   // history hook
   let history = useHistory();
   return (
-    <Grid className={`w-100 ${classes.containerStyle}`}>
+    <Grid container className={`w-100 divider ${classes.containerStyle}`}>
       <Grid
         item
         className={classes.imageDivStyle}
+        sm={4}
+        xs={12}
         style={{
           background: `url(${process.env.PUBLIC_URL}assets/${ImgSrc}.jpg) no-repeat center`,
         }}
-        xl={5}
-        sm={12}
       ></Grid>
-      <Grid item className={classes.priceDivStyle} xl={4} sm={12}>
+      <Grid item className={classes.priceDivStyle} sm={4} xs={12}>
         <Typography variant="body2" color="textSecondary" component="p">
           Brand : {Brand}
         </Typography>
@@ -109,7 +116,7 @@ function CheckoutProductCard(props) {
           }).format(Price)}
         </Typography>
       </Grid>
-      <Grid item className={classes.quantityDivStyle} xl={3} sm={12}>
+      <Grid item className={classes.quantityDivStyle} sm={4} xs={12}>
         <Typography
           variant="body2"
           color="textSecondary"

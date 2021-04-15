@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 800,
   },
   typographyPriceStyle: {
-    fontSize: "1.25rem",
+    fontSize: "1.10rem",
     fontWeight: 800,
   },
   cardActionButtonContainerStyle: {
