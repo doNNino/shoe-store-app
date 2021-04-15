@@ -5,3 +5,12 @@
 // fronts
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap");
 // css classes
+// CHECKOUT PRODUCT CARD
+//divider class
+.divider::after {
+  content: "";
+  display: inherit;
+  width: 50%;
+  margin: 10px auto;
+  border-top: 1px solid #daecff;
+}
