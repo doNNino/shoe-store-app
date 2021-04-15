@@ -1,6 +1,8 @@
 import React from "react";
 // redux import
 import { connect } from "react-redux";
+// history hook import
+import { useHistory } from "react-router-dom";
 // MaterialUI components
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -44,8 +46,16 @@ function OrderHistory(props) {
   const { orderHistory } = props;
   // redux actions
   const { clearOrderHistory } = props;
+  // history hook
+  let history = useHistory();
   // boolian that shows which page should be rendered
   const showPageWithOrderHistory = orderHistory.length > 0;
+
+  // function that calls clearOrderHistory and redirects to homepage
+  const clearHistory = async () => {
+    await clearOrderHistory();
+    history.push("/home");
+  };
 
   return (
     <div className="w-100 h-100">
@@ -70,7 +80,7 @@ function OrderHistory(props) {
                 </Grid>
               ))}
               <Grid item className="w-100 text-center mt-5">
-                <Button color="primary" onClick={() => clearOrderHistory()}>
+                <Button color="primary" onClick={clearHistory}>
                   Clear History
                 </Button>
               </Grid>

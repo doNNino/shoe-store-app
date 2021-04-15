@@ -105,7 +105,7 @@ export const addProductToCart = (product) => async (dispatch, getState) => {
  * @param {*} actionType - type of the action, it can be: 'add' to increment quantity or 'remove' to decrement quantity(if quantity reaches 0 selected product is removed(deselected))
  * @returns
  */
-export const changeQuantity = (productId, actionType) => async (
+export const changeQuantity = (productId, actionType, history) => async (
   dispatch,
   getState
 ) => {
@@ -134,6 +134,10 @@ export const changeQuantity = (productId, actionType) => async (
   }
   // dispatch new selected products(with new Quantity values)
   await dispatch(selectedProductsSet(selectedProducts));
+  // check if all products are unselected(in that case navigate back to homepage)
+  if (actionType === "remove" && selectedProducts.length === 0) {
+    history.push("/home");
+  }
   // Recalculate the total price for products
   await dispatch(totalPriceOfProducts());
 };

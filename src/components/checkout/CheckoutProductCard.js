@@ -1,5 +1,8 @@
 import React from "react";
+// redux connect import
 import { connect } from "react-redux";
+// react router useHistory hook import
+import { useHistory } from "react-router-dom";
 // MaterialUI components
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -73,6 +76,8 @@ function CheckoutProductCard(props) {
   const { Quantity } = props;
   // item details
   const { Brand, _id, ImgSrc, Name, Price } = props.itemDetails;
+  // history hook
+  let history = useHistory();
   return (
     <Grid className={`w-100 ${classes.containerStyle}`}>
       <Grid
@@ -126,7 +131,7 @@ function CheckoutProductCard(props) {
             aria-label="decrease-quantity"
             size="medium"
             className={classes.iconButtonStyle}
-            onClick={() => changeQuantity(_id, "remove")}
+            onClick={() => changeQuantity(_id, "remove", history)}
           >
             <ArrowDownwardIcon fontSize="inherit" />
           </IconButton>
