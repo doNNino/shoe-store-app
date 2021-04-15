@@ -80,7 +80,11 @@ function OrderHistory(props) {
                 </Grid>
               ))}
               <Grid item className="w-100 text-center mt-5">
-                <Button color="primary" onClick={clearHistory}>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={clearHistory}
+                >
                   Clear History
                 </Button>
               </Grid>
