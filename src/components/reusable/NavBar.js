@@ -57,15 +57,15 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     margin: "0px 20px",
     "&:hover": {
-      color: "#ff94ba",
+      color: "#00ffdc",
       textDecoration: "none",
     },
   },
   navLinkActive: {
-    color: "#ff94ba",
+    color: "#00ffdc",
     margin: "0px 20px",
     "&:hover": {
-      color: "#ff94ba",
+      color: "#00ffdc",
       textDecoration: "none",
     },
   },
